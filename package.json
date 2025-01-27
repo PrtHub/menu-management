@@ -9,6 +9,7 @@
     "build": "tsc",
     "postinstall": "npm run build",
     "vercel-build": "npm run build",
+    "deploy": "vercel --prod",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"src/**/*.ts\""
   },
