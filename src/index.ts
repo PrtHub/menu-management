@@ -16,7 +16,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-mongoose.connect('mongodb+srv://menu_manage:lNTt5uIaYMc0v6GT@cluster0.zw5mm.mongodb.net')
+mongoose.connect(process.env.MONGODB_URI!)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
@@ -34,6 +34,10 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Routes
+app.get('/', (req, res) => {
+  res.json({ message: 'Menu Management API is running!' });
+});
+
 app.use('/api/categories', categoryRoutes);
 app.use('/api/subcategories', subcategoryRoutes);
 app.use('/api/items', itemRoutes);
